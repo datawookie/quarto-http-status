@@ -56,3 +56,6 @@ Render [example.qmd](example.qmd) with `quarto render example.qmd`. It shows inf
 
 The mapping follows the [IANA HTTP Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml), checked November 2026. To update it, edit [`_extensions/http-status/http-status.lua`](_extensions/http-status/http-status.lua) and compare the entries with IANA's current registry.
 
+## Versioning
+
+The extension version is tracked in `.bumpversion.cfg` and `_extensions/http-status/_extension.yml`. To set the next version, run `bump2version --new-version 0.0.2 patch` (replace `0.0.2` with the version you want). This updates both files without creating a commit or tag.
