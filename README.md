@@ -29,7 +29,16 @@ The output is a Pandoc span, so it works in HTML, PDF, Word, and other formats t
 <span class="http-status http-status-error http-status-404">404 Not Found</span>
 ```
 
-Every span has `http-status` and `http-status-<code>`. Codes in the 2xx range also have `http-status-success`; codes in the 4xx and 5xx ranges have `http-status-error`. Informational (1xx) and redirection (3xx) codes have no success or error class.
+Each span gets classes at these levels:
+
+| Level | Class | Applies to |
+| --- | --- | --- |
+| All statuses | `http-status` | Every code |
+| Category | `http-status-success` | 2xx codes |
+| Category | `http-status-error` | 4xx and 5xx codes |
+| Exact code | `http-status-<code>` | One code, such as `http-status-404` |
+
+Informational (1xx) and redirection (3xx) codes have the all-status and exact-code classes, but no success or error class. For example, 200 gets `http-status http-status-success http-status-200`, while 404 gets `http-status http-status-error http-status-404`.
 
 ### Styling
 
@@ -55,7 +64,3 @@ Render [example.qmd](example.qmd) with `quarto render example.qmd`. It shows inf
 ## Status descriptions
 
 The mapping follows the [IANA HTTP Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml), checked November 2026. To update it, edit [`_extensions/http-status/http-status.lua`](_extensions/http-status/http-status.lua) and compare the entries with IANA's current registry.
-
-## Versioning
-
-The extension version is tracked in `.bumpversion.cfg` and `_extensions/http-status/_extension.yml`. To set the next version, run `bump2version --new-version 0.0.2 patch` (replace `0.0.2` with the version you want). This updates both files without creating a commit or tag.
