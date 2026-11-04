@@ -1,0 +1,10 @@
+---
+title: "HTTP Status shortcode example"
+format: html
+---
+
+A successful response is {{< http-status 200 >}}.
+
+A missing resource returns {{< http-status 404 >}}.
+
+A rate-limited request returns {{< http-status 429 >}}.
