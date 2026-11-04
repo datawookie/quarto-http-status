@@ -42,17 +42,17 @@ Informational (1xx) and redirection (3xx) codes have the all-status and exact-co
 
 ### Styling
 
-In HTML output, the extension adds a small default stylesheet: success codes are green and error codes are dark red. Other codes are unstyled. The default rules use `:where()`, so they have zero specificity and any rule of your own overrides them.
+In HTML output, the extension adds a small default stylesheet that renders each status as a bold badge with white text on a rounded background: green for success codes, red for error codes, and grey for everything else. The default rules use `:where()`, so they have zero specificity and any rule of your own overrides them.
 
 Add a CSS rule to your project if you want a custom appearance:
 
 ```css
 .http-status {
-  font-weight: 600;
+  border-radius: 0;
   white-space: nowrap;
 }
 
-.http-status-success { color: seagreen; }
+.http-status-success { background: seagreen; }
 .http-status-404 { text-decoration: underline; }
 ```
 

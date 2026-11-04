@@ -1,3 +1,12 @@
-/* Default colours. :where() keeps specificity at zero so any user rule wins. */
-:where(.http-status-success) { color: green; }
-:where(.http-status-error) { color: darkred; }
+/* Default badge styling. :where() keeps specificity at zero so any user rule wins. */
+:where(.http-status) {
+  display: inline-block;
+  padding: 0.15em 0.45em;
+  border-radius: 6px;
+  background: #62675f;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1.1;
+}
+:where(.http-status-success) { background: #24685d; }
+:where(.http-status-error) { background: #b43b32; }
