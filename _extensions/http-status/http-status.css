@@ -1,0 +1,3 @@
+/* Default colours. :where() keeps specificity at zero so any user rule wins. */
+:where(.http-status-success) { color: green; }
+:where(.http-status-error) { color: darkred; }

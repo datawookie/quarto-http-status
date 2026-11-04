@@ -80,6 +80,13 @@ return {
       error("http-status has no registered description for " .. code)
     end
 
+    if quarto.doc.is_format("html") then
+      quarto.doc.add_html_dependency({
+        name = "http-status",
+        stylesheets = { "http-status.css" },
+      })
+    end
+
     local classes = { "http-status" }
     local category = code:sub(1, 1)
     if category == "2" then

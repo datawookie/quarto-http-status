@@ -42,6 +42,8 @@ Informational (1xx) and redirection (3xx) codes have the all-status and exact-co
 
 ### Styling
 
+In HTML output, the extension adds a small default stylesheet: success codes are green and error codes are dark red. Other codes are unstyled. The default rules use `:where()`, so they have zero specificity and any rule of your own overrides them.
+
 Add a CSS rule to your project if you want a custom appearance:
 
 ```css
@@ -50,12 +52,11 @@ Add a CSS rule to your project if you want a custom appearance:
   white-space: nowrap;
 }
 
-.http-status-success { color: green; }
-.http-status-error { color: darkred; }
+.http-status-success { color: seagreen; }
 .http-status-404 { text-decoration: underline; }
 ```
 
-Then add the stylesheet to your document or project YAML with `format: { html: { css: styles.css } }`. The extension supplies the classes but does not impose a visual style.
+Then add the stylesheet to your document or project YAML with `format: { html: { css: styles.css } }`.
 
 ## Example
 
