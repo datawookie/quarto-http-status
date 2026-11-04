@@ -3,8 +3,14 @@ title: "HTTP Status shortcode example"
 format: html
 ---
 
+An informational response is {{< http-status 100 >}}.
+
 A successful response is {{< http-status 200 >}}.
+
+A redirect is {{< http-status 301 >}}.
 
 A missing resource returns {{< http-status 404 >}}.
 
 A rate-limited request returns {{< http-status 429 >}}.
+
+A server failure returns {{< http-status 503 >}}.

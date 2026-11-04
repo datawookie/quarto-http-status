@@ -1,6 +1,6 @@
 # HTTP Status extension for Quarto
 
-An inline shortcode that turns an HTTP status code into its code and registered description. For example, `{{< http-status 404 >}}` renders as **404 Not Found** inside a `http-status` span.
+An inline shortcode that turns an HTTP status code into its code and registered description. For example, `{{< http-status 404 >}}` renders as **404 Not Found** inside a span with classes for all statuses, errors, and code 404.
 
 ## Installing
 
@@ -26,8 +26,10 @@ These render as “200 OK” and “404 Not Found”. The shortcode accepts exac
 The output is a Pandoc span, so it works in HTML, PDF, Word, and other formats that support inline text. In HTML, it looks like this:
 
 ```html
-<span class="http-status">404 Not Found</span>
+<span class="http-status http-status-error http-status-404">404 Not Found</span>
 ```
+
+Every span has `http-status` and `http-status-<code>`. Codes in the 2xx range also have `http-status-success`; codes in the 4xx and 5xx ranges have `http-status-error`. Informational (1xx) and redirection (3xx) codes have no success or error class.
 
 ### Styling
 
@@ -38,14 +40,19 @@ Add a CSS rule to your project if you want a custom appearance:
   font-weight: 600;
   white-space: nowrap;
 }
+
+.http-status-success { color: green; }
+.http-status-error { color: darkred; }
+.http-status-404 { text-decoration: underline; }
 ```
 
-Then add the stylesheet to your document or project YAML with `format: { html: { css: styles.css } }`. The extension supplies the class but does not impose a visual style.
+Then add the stylesheet to your document or project YAML with `format: { html: { css: styles.css } }`. The extension supplies the classes but does not impose a visual style.
 
 ## Example
 
-Render [example.qmd](example.qmd) with `quarto render example.qmd`. It shows 200, 404, and 429 in a short document.
+Render [example.qmd](example.qmd) with `quarto render example.qmd`. It shows informational, success, redirection, client error, and server error codes in a short document.
 
 ## Status descriptions
 
 The mapping follows the [IANA HTTP Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml), checked November 2026. To update it, edit [`_extensions/http-status/http-status.lua`](_extensions/http-status/http-status.lua) and compare the entries with IANA's current registry.
+

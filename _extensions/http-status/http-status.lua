@@ -80,6 +80,15 @@ return {
       error("http-status has no registered description for " .. code)
     end
 
-    return pandoc.Span(code .. " " .. description, pandoc.Attr("", { "http-status" }))
+    local classes = { "http-status" }
+    local category = code:sub(1, 1)
+    if category == "2" then
+      table.insert(classes, "http-status-success")
+    elseif category == "4" or category == "5" then
+      table.insert(classes, "http-status-error")
+    end
+    table.insert(classes, "http-status-" .. code)
+
+    return pandoc.Span(code .. " " .. description, pandoc.Attr("", classes))
   end,
 }
